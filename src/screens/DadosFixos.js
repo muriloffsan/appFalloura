@@ -1,3 +1,4 @@
+// src/screens/DadosFixos.js
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image, Platform, Dimensions } from 'react-native';
 import { BlurView } from 'expo-blur';

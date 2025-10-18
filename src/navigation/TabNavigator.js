@@ -10,7 +10,6 @@ import DadosFixosScreen from '../screens/DadosFixos.js';
 
 const Tab = createBottomTabNavigator();
 
-// Placeholder para telas ainda não criadas
 const PlaceholderScreen = () => (
   <View style={{ flex: 1, backgroundColor: '#f0f0f0', justifyContent: 'center', alignItems: 'center' }} />
 );

@@ -21,10 +21,11 @@ export default function DadosAtuaisScreen() {
           </BlurView>
         </TouchableOpacity>
 
-        {/* Dados principais */}
-        <View style={styles.content}>
-          <Text style={styles.title}>Dados atuais</Text>
+        {/* --- Título com mesmo estilo de DadosFixos --- */}
+        <Text style={styles.title}>DADOS ATUAIS</Text>
 
+        {/* Conteúdo principal */}
+        <View style={styles.content}>
           <Image source={require('../../assets/avatar.png')} style={styles.avatar} />
           <Text style={styles.name}>Paulo Cesar</Text>
 
@@ -82,14 +83,19 @@ const styles = StyleSheet.create({
 
   content: {
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 10, // reduzido pois o título já ocupa espaço
   },
+
+  // 🔹 Título agora igual ao de DadosFixos (MONITORAMENTO)
   title: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '700',
     color: '#000',
-    marginBottom: 10,
+    marginTop: 0,
+    marginBottom: 20,
+    textAlign: 'center',
   },
+
   avatar: {
     width: 90,
     height: 90,
