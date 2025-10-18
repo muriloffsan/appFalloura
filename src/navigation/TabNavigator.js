@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from '../screens/HomeScreen';
 import DadosAtuaisScreen from '../screens/dadosAtuais.js';
+import DadosFixosScreen from '../screens/DadosFixos.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +58,7 @@ export default function TabNavigator() {
       {/* 📋 Dados Fixos */}
       <Tab.Screen
         name="DadosFixos"
-        component={PlaceholderScreen}
+        component={DadosFixosScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons

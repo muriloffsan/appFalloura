@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/LoginScreen';
 import TabNavigator from './src/navigation/TabNavigator';
 import DadosAtuais from './src/screens/dadosAtuais.js'; 
+import DadosFixos from './src/screens/DadosFixos.js'; 
 
 
 const Stack = createNativeStackNavigator();
@@ -17,7 +18,7 @@ export default function App() {
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="HomeTabs" component={TabNavigator} />
           <Stack.Screen name="DadosAtuais" component={DadosAtuais} /> 
-          {/* ✅ nova tela adicionada */}
+          <Stack.Screen name="DadosFixos" component={DadosFixos} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
