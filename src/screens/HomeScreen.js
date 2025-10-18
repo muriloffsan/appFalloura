@@ -1,30 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
+import { useNavigation } from '@react-navigation/native'; // ✅ Importar
 import StatusBarSim from '../components/StatusBarSim';
 
 export default function HomeScreen() {
-  // ATENÇÃO: É necessário ter os arquivos de imagem PNG nos caminhos indicados (e.g., assets/logo.png, assets/watch_black.png).
-  
+  const navigation = useNavigation(); // ✅ Hook de navegação
+
   return (
     <ImageBackground source={require('../../assets/background.jpg')} style={styles.bg}>
-      
-      {/* Overlay para melhorar a legibilidade do texto e ícones */}
-      <View style={styles.overlay} /> 
-
+      <View style={styles.overlay} />
       <StatusBarSim />
-      
+
       <View style={styles.container}>
         <BlurView intensity={30} tint="light" style={styles.logoBox}>
-          {/* Substituído Ionicons e logoText por uma única imagem para a logo */}
-          <Image 
-            source={require('../../assets/logo.png')} 
-            style={styles.logoImage} 
-            resizeMode="contain" 
-          />
+          <Image source={require('../../assets/logo.png')} style={styles.logoImage} resizeMode="contain" />
         </BlurView>
 
-        {/* Row de Ícones Pequenos (Navegação Rápida) - Usando imagens PNG */}
+        {/* Ícones de navegação rápida */}
         <View style={styles.iconRowMiddle}>
           <TouchableOpacity style={styles.iconButton}>
             <Image source={require('../../assets/notificação.png')} style={styles.smallIcon} />
@@ -38,36 +31,31 @@ export default function HomeScreen() {
           <TouchableOpacity style={styles.iconButton}>
             <Image source={require('../../assets/mapa.png')} style={styles.smallIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity 
+            style={styles.iconButton}
+            onPress={() => navigation.navigate('DadosAtuais')} // 👈 Navega para a tela desejada
+          >
             <Image source={require('../../assets/iconevelho.png')} style={styles.smallIcon} />
           </TouchableOpacity>
         </View>
 
-        {/* Containers de botões principais (Monitoramento e Emergência) */}
+        {/* Botões principais */}
         <View style={styles.buttonsContainer}>
-          
-          {/* Card MONITORAMENTO - Centralizado e ajustado para PNG */}
           <BlurView intensity={70} tint="light" style={styles.card}>
             <TouchableOpacity style={styles.cardContent}>
-              {/* Imagem Centralizada */}
               <Image source={require('../../assets/monitoramento.png')} style={styles.largeIcon} />
-              {/* Texto Abaixo */}
               <Text style={styles.cardText}>MONITORAMENTO</Text>
             </TouchableOpacity>
           </BlurView>
 
-          {/* Card EMERGÊNCIA - Centralizado e ajustado para PNG */}
           <BlurView intensity={70} tint="light" style={styles.card}>
             <TouchableOpacity style={styles.cardContent}>
-              {/* Imagem Centralizada */}
               <Image source={require('../../assets/emergencia.png')} style={styles.largeIcon} />
-              {/* Texto Abaixo */}
               <Text style={styles.cardText}>EMERGÊNCIA</Text>
             </TouchableOpacity>
           </BlurView>
         </View>
-        
-        {/* Espaçador */}
+
         <View style={styles.spacer} />
       </View>
     </ImageBackground>
