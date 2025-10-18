@@ -1,130 +1,202 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { Ionicons } from '@expo/vector-icons';
 import StatusBarSim from '../components/StatusBarSim';
 
 export default function HomeScreen() {
+  // ATENÇÃO: É necessário ter os arquivos de imagem PNG nos caminhos indicados (e.g., assets/logo.png, assets/watch_black.png).
+  
   return (
-    // Adicionado um View de Overlay para replicar o estilo do LoginScreen e melhorar a legibilidade
     <ImageBackground source={require('../../assets/background.jpg')} style={styles.bg}>
       
-      {/* Overlay para melhorar a legibilidade do texto e ícones brancos */}
+      {/* Overlay para melhorar a legibilidade do texto e ícones */}
       <View style={styles.overlay} /> 
 
       <StatusBarSim />
       
       <View style={styles.container}>
-        {/* Row superior de ícones de navegação rápida */}
-        <View style={styles.iconRowTop}>
-          <TouchableOpacity style={styles.topIcon}><Ionicons name="person" size={26} color="#fff" /></TouchableOpacity>
-          <TouchableOpacity style={styles.topIcon}><Ionicons name="alert" size={26} color="#fff" /></TouchableOpacity>
-          <TouchableOpacity style={styles.topIcon}><Ionicons name="map" size={26} color="#fff" /></TouchableOpacity>
-          <TouchableOpacity style={styles.topIcon}><Ionicons name="people" size={26} color="#fff" /></TouchableOpacity>
+        <BlurView intensity={30} tint="light" style={styles.logoBox}>
+          {/* Substituído Ionicons e logoText por uma única imagem para a logo */}
+          <Image 
+            source={require('../../assets/logo.png')} 
+            style={styles.logoImage} 
+            resizeMode="contain" 
+          />
+        </BlurView>
+
+        {/* Row de Ícones Pequenos (Navegação Rápida) - Usando imagens PNG */}
+        <View style={styles.iconRowMiddle}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Image source={require('../../assets/notificação.png')} style={styles.smallIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Image source={require('../../assets/alerta.png')} style={styles.smallIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Image source={require('../../assets/queda.png')} style={styles.smallIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Image source={require('../../assets/mapa.png')} style={styles.smallIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <Image source={require('../../assets/iconevelho.png')} style={styles.smallIcon} />
+          </TouchableOpacity>
         </View>
 
-        <View style={styles.logoBox}>
-          <Image source={require('../../assets/logo.png')} style={styles.logo} resizeMode="contain" />
-        </View>
-
-        {/* Containers de botões principais */}
+        {/* Containers de botões principais (Monitoramento e Emergência) */}
         <View style={styles.buttonsContainer}>
+          
+          {/* Card MONITORAMENTO - Centralizado e ajustado para PNG */}
           <BlurView intensity={70} tint="light" style={styles.card}>
             <TouchableOpacity style={styles.cardContent}>
-              <Ionicons name="watch" size={40} color="#fff" />
+              {/* Imagem Centralizada */}
+              <Image source={require('../../assets/monitoramento.png')} style={styles.largeIcon} />
+              {/* Texto Abaixo */}
               <Text style={styles.cardText}>MONITORAMENTO</Text>
             </TouchableOpacity>
           </BlurView>
 
+          {/* Card EMERGÊNCIA - Centralizado e ajustado para PNG */}
           <BlurView intensity={70} tint="light" style={styles.card}>
             <TouchableOpacity style={styles.cardContent}>
-              <Ionicons name="alert-circle" size={40} color="#fff" />
+              {/* Imagem Centralizada */}
+              <Image source={require('../../assets/emergencia.png')} style={styles.largeIcon} />
+              {/* Texto Abaixo */}
               <Text style={styles.cardText}>EMERGÊNCIA</Text>
             </TouchableOpacity>
           </BlurView>
         </View>
         
-        {/* Adicionado espaço flexível para empurrar o conteúdo para cima */}
-        <View style={{ flex: 1 }} /> 
-
+        {/* Espaçador */}
+        <View style={styles.spacer} />
       </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  // CORREÇÃO ESSENCIAL: Garante que o background ocupe 100% da tela
   bg: { 
     flex: 1, 
     width: '100%', 
     height: '100%',
     resizeMode: 'cover' 
   },
-  
-  // Overlay para contraste, replicando o estilo do LoginScreen
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', // 20% de opacidade preta
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
   },
-  
-  // O container deve ter flex: 1 e zIndex para ficar acima do overlay
   container: { 
     flex: 1, 
     zIndex: 1, 
     paddingTop: 60, 
     alignItems: 'center', 
-    paddingHorizontal: 20, // Adicionado padding horizontal
-  },
-  
-  // Novo estilo para a row de ícones superiores
-  iconRowTop: {
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
-    width: '100%', 
-    paddingHorizontal: 30, // Espaçamento maior
-    marginBottom: 20
-  },
-  topIcon: {
-    padding: 10,
+    paddingHorizontal: 20,
+    justifyContent: 'flex-start',
   },
 
+  // Título "FALLORA" no topo
+  appTitle: {
+    alignSelf: 'flex-start',
+    color: '#FFF',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    marginTop: Platform.OS === 'android' ? 0 : -30, 
+  },
+
+  // Card Grande da Logo/Marca
   logoBox: {
-    width: '90%', // Aumentado um pouco
-    height: 100, // Ajustado a altura
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderRadius: 20,
+    width: '95%',
+    height: 150,
+    borderRadius: 30, 
+    backgroundColor: 'rgba(255, 255, 255, 0.4)', 
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 40, // Aumentado o espaço
+    marginBottom: 25,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
   },
-  logo: { width: 150, height: 60 },
+  logoImage: {
+    width: '80%', // Tamanho ajustado para caber bem no card
+    height: '80%',
+  },
 
-  // A antiga iconRow foi substituída por iconRowTop. Mantenho o nome buttonsContainer
+  // Row de Ícones Pequenos (Navegação Rápida)
+  iconRowMiddle: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    width: '95%',
+    paddingHorizontal: 5,
+    marginBottom: 40,
+  },
+  iconButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 15,
+    backgroundColor: 'rgba(255,255,255,0.7)', 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  smallIcon: {
+    width: 26,
+    height: 26,
+    tintColor: '#444', // Aplicando a cor escura nas imagens PNG (se suportarem tint)
+  },
+
+  // Containers de botões principais (Monitoramento e Emergência)
   buttonsContainer: { 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
-    width: '90%', 
-    marginTop: 20,
+    width: '95%', 
   },
   card: {
-    width: '48%', // Usa porcentagem para ser responsivo
-    aspectRatio: 1, // Mantém o card quadrado
-    borderRadius: 25,
+    width: '48%', 
+    height: 180,
+    borderRadius: 20,
     overflow: 'hidden',
-    // Usando uma cor mais escura para o blur ficar mais nítido
-    backgroundColor: 'rgba(255,255,255,0.1)', 
+    backgroundColor: 'rgba(255, 255, 255, 0.4)', 
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
   },
   cardContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // ESSENCIAL: CENTRALIZAÇÃO
+    justifyContent: 'center', 
+    alignItems: 'center', 
     padding: 20,
   },
-  cardText: { 
-    color: '#fff', 
-    marginTop: 10, 
-    fontWeight: 'bold', 
-    fontSize: 12, // Tamanho menor
-    textAlign: 'center'
+  largeIcon: {
+    width: 50,
+    height: 50,
+    marginBottom: 10, // Espaçamento entre o ícone e o texto
+    tintColor: '#000', // Aplicando a cor preta nas imagens PNG
   },
+  cardText: { 
+    color: '#000', // Texto PRETO
+    fontWeight: 'bold', 
+    fontSize: 14, 
+    textTransform: 'uppercase',
+  },
+  spacer: {
+    flex: 1,
+    paddingBottom: 80, 
+  }
 });
