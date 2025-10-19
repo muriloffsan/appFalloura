@@ -49,7 +49,10 @@ export default function HomeScreen() {
           </BlurView>
 
           <BlurView intensity={70} tint="light" style={styles.card}>
-            <TouchableOpacity style={styles.cardContent}>
+            <TouchableOpacity 
+              style={styles.cardContent}
+              onPress={() => navigation.navigate('Emergencia')}
+            >
               <Image source={require('../../assets/emergencia.png')} style={styles.largeIcon} />
               <Text style={styles.cardText}>EMERGÊNCIA</Text>
             </TouchableOpacity>

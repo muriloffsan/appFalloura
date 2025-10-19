@@ -7,6 +7,9 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import DadosAtuaisScreen from '../screens/dadosAtuais.js';
 import DadosFixosScreen from '../screens/DadosFixos.js';
+import EmergenciaScreen from '../screens/Emergencia.js';
+
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,14 +30,10 @@ export default function TabNavigator() {
       {/* 🏠 Home */}
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name={focused ? 'home' : 'home-outline'}
-              size={28}
-              color={focused ? '#000' : '#444'}
-            />
+            <Ionicons name={focused ? 'home' : 'home-outline'} size={28} color={focused ? '#000' : '#444'} />
           ),
         }}
       />
