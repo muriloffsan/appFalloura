@@ -1,4 +1,3 @@
-// src/screens/Historico.js
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image, Platform, ScrollView } from 'react-native';
 import { BlurView } from 'expo-blur';
@@ -6,7 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
 // Componente para um cartão de histórico (Evento de Queda)
-const FallHistoryCard = ({ local, horario, grau }) => {
+// CORREÇÃO: Recebe 'navigation' como prop
+const FallHistoryCard = ({ local, horario, grau, navigation }) => {
   return (
     <BlurView intensity={20} tint="dark" style={styles.cardContainer}>
       <View style={styles.cardContent}>
@@ -14,7 +14,8 @@ const FallHistoryCard = ({ local, horario, grau }) => {
         <Image source={require('../../assets/Exemplo 1.png')} style={styles.mapImage} />
         <Text style={styles.cardText}>Horario: {horario}</Text>
         <Text style={styles.cardText}>Grau da queda: {grau}</Text>
-        <TouchableOpacity style={styles.verMaisButton}>
+        {/* CORREÇÃO: Usa navigation.navigate('DadosQuedasScreen') */}
+        <TouchableOpacity style={styles.verMaisButton} onPress={() => navigation.navigate('DadosQueda')} >
           <Text style={styles.verMaisButtonText}>Ver mais</Text>
         </TouchableOpacity>
       </View>
@@ -32,7 +33,7 @@ export default function HistoricoScreen() {
 
       <View style={styles.container}>
         
-        {/* NOVO CONTÊINER PARA ALINHAR O TÍTULO E O BOTÃO */}
+        {/* CONTÊINER DO CABEÇALHO */}
         <View style={styles.headerContainer}> 
             {/* Botão Voltar */}
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -44,15 +45,14 @@ export default function HistoricoScreen() {
             {/* --- Título alinhado --- */}
             <Text style={styles.title}>Historico de queda</Text>
         </View>
-        {/* FIM DO NOVO CONTÊINER */}
 
         {/* Conteúdo principal - AGORA ESCROLÁVEL */}
         <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-          {/* ... Cartões ... */}
-          <FallHistoryCard local="Rua Exemplo, 123" horario="11h 11min" grau="baixo" />
-          <FallHistoryCard local="Av. Teste, 456" horario="17h 12min" grau="baixo" />
-          <FallHistoryCard local="Praça da Liberdade" horario="09h 30min" grau="médio" />
-          <FallHistoryCard local="Rua do Desenvolvedor, 789" horario="14h 05min" grau="alto" />
+          {/* CORREÇÃO: Passando a prop navigation={navigation} para cada card */}
+          <FallHistoryCard navigation={navigation} local="Rua Exemplo, 123" horario="11h 11min" grau="baixo" />
+          <FallHistoryCard navigation={navigation} local="Av. Teste, 456" horario="17h 12min" grau="baixo" />
+          <FallHistoryCard navigation={navigation} local="Praça da Liberdade" horario="09h 30min" grau="médio" />
+          <FallHistoryCard navigation={navigation} local="Rua do Desenvolvedor, 789" horario="14h 05min" grau="alto" />
         </ScrollView>
       </View>
     </ImageBackground>
@@ -66,25 +66,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    // O padding superior será movido para o headerContainer
     paddingTop: 0, 
     zIndex: 1,
   },
 
-  // NOVO ESTILO: Contêiner que alinha o botão e o título
+  // Contêiner que alinha o botão e o título
   headerContainer: {
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'center', // Alinha verticalmente no centro
-    justifyContent: 'center', // Centraliza o conteúdo no eixo principal (horizontal)
-    paddingTop: Platform.OS === 'android' ? 70 : 100, // Mantém o espaçamento superior aqui
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    paddingTop: Platform.OS === 'android' ? 70 : 100, 
     paddingHorizontal: 25,
-    marginBottom: 30, // Usa esse estilo para dar espaço antes do ScrollView
+    marginBottom: 30, 
   },
 
   backButton: {
-    position: 'absolute', // Permite que ele fique fora do fluxo normal, sobreposto.
-    // top: já não é necessário, pois o headerContainer lida com o alinhamento vertical
+    position: 'absolute', 
     left: 25,
     zIndex: 10,
   },
@@ -102,17 +100,16 @@ const styles = StyleSheet.create({
     fontSize: 22, 
     fontWeight: '700',
     color: '#000', 
-    // Removido marginBottom daqui, agora está no headerContainer
     textAlign: 'center',
   },
 
   // Estilos para o ScrollView
   scrollContent: {
     paddingBottom: 40,
-    alignItems: 'center', // Centraliza o conteúdo do ScrollView (os cartões)
+    alignItems: 'center', 
   },
 
-  // Estilos para os cartões de Glassmorfismo (sem alterações)
+  // Estilos para os cartões de Glassmorfismo
   cardContainer: {
     width: 300,
     borderRadius: 20,
