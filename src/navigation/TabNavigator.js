@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import DadosAtuaisScreen from '../screens/dadosAtuais.js';
 import DadosFixosScreen from '../screens/DadosFixos.js';
-import EmergenciaScreen from '../screens/Emergencia.js';
+import LocalRealScreen from '../screens/LocalReal.js';
 
 import HomeStack from './HomeStack';
 
@@ -71,7 +71,7 @@ export default function TabNavigator() {
       {/* 🗺️ Mapa */}
       <Tab.Screen
         name="Mapa"
-        component={PlaceholderScreen}
+        component={LocalRealScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons

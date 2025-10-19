@@ -57,7 +57,7 @@ export default function MonitoramentoScreen() {
 
         {/* Card 2 - Residência */}
         <GlassmorphicCard style={styles.residenceCard}>
-          <Text style={styles.residenceTitle}>Residência</Text>
+          <Text style={styles.residenceTitle}>Residência de Paulo Cesar</Text>
           <View style={styles.mapContainer}>
             <Image source={MAP_IMAGE} style={styles.mapImage} resizeMode="cover" />
           </View>
