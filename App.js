@@ -10,6 +10,7 @@ import Emergencia from './src/screens/Emergencia.js';
 import Monitoramento from './src/screens/Monitoramento.js';
 import Historico from './src/screens/Historico.js';
 import DadosQueda from './src/screens/DadosQueda.js';
+import LocalAtual from './src/screens/LocalReal.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export default function App() {
           <Stack.Screen name="Monitoramento" component={Monitoramento} />
           <Stack.Screen name="Historico" component={Historico} />
           <Stack.Screen name="DadosQueda" component={DadosQueda} />
+          <Stack.Screen name="LocalAtual" component={LocalAtual} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -47,7 +47,7 @@ export default function DadosAtuaisScreen() {
 
           {/* Card - Ver mais */}
           <BlurView intensity={70} tint="light" style={styles.cardSmall}>
-            <TouchableOpacity style={styles.cardButton}>
+            <TouchableOpacity style={styles.cardButton} onPress={() => navigation.navigate('LocalAtual')}>
               <Image source={require('../../assets/mapa.png')} style={styles.iconSmall} />
               <Text style={styles.cardTextSmall}>Ver mais</Text>
             </TouchableOpacity>

@@ -73,7 +73,10 @@ export default function EmergenciaScreen() {
         visible={modalVisible === 'mapa'}
         text={'Paulo Cesar caiu na rua Luiz Nani, Caçapava'}
         buttonLabel="Abrir no mapa"
-        onConfirm={() => setModalVisible(null)}
+        onConfirm={() => {
+          setModalVisible(null);          
+          navigation.navigate('LocalAtual'); 
+        }}
       />
       <ModalBox
         visible={modalVisible === 'telefone'}

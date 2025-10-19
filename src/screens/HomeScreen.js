@@ -40,7 +40,9 @@ export default function HomeScreen() {
             <Image source={require('../../assets/queda.png')} style={styles.smallIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity style={styles.iconButton} 
+            onPress={() => navigation.navigate('LocalAtual')}
+          >
             <Image source={require('../../assets/mapa.png')} style={styles.smallIcon} />
           </TouchableOpacity>
 
