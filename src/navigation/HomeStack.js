@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import EmergenciaScreen from '../screens/Emergencia';
 import MonitoramentoScreen from '../screens/Monitoramento';
+import HistoricoScreen from '../screens/Historico';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function HomeStack() {
       {/* Tela Emergência acessada via botão */}
       <Stack.Screen name="Emergencia" component={EmergenciaScreen} />
       <Stack.Screen name="Monitoramento" component={MonitoramentoScreen} />
+      <Stack.Screen name="Historico" component={HistoricoScreen} />
     </Stack.Navigator>
   );
 }

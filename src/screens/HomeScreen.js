@@ -34,7 +34,9 @@ export default function HomeScreen() {
             <Image source={require('../../assets/alerta.png')} style={styles.smallIcon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity style={styles.iconButton}
+            onPress={() => navigation.navigate('Historico')}
+          >
             <Image source={require('../../assets/queda.png')} style={styles.smallIcon} />
           </TouchableOpacity>
 
@@ -115,7 +117,7 @@ export default function HomeScreen() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContainer}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalTitle}>Horário do último Evento</Text>
+              <Text style={styles.modalTitle}>Nenhum evento recente</Text>
               <Text style={styles.modalSubtitle}>Paulo Cesar</Text>
               <Text style={styles.modalSubtitle}>Horário do último evento registrado: 14:53</Text>
               <TouchableOpacity onPress={() => setModalAlertaVisible(false)} style={styles.closeButton}>

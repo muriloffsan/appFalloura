@@ -23,7 +23,7 @@ export default function DadosAtuaisScreen() {
         </TouchableOpacity>
 
         {/* Título */}
-        <Text style={styles.title}>Monitoramento</Text>
+        <Text style={styles.title}>DADOS DO DISPOSITIVO</Text>
 
         {/* Avatar e nome */}
         <Image
