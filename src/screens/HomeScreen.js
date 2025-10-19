@@ -42,7 +42,10 @@ export default function HomeScreen() {
         {/* Botões principais */}
         <View style={styles.buttonsContainer}>
           <BlurView intensity={70} tint="light" style={styles.card}>
-            <TouchableOpacity style={styles.cardContent}>
+            <TouchableOpacity   
+              style={styles.cardContent}
+              onPress={() => navigation.navigate('Monitoramento')}
+            >
               <Image source={require('../../assets/monitoramento.png')} style={styles.largeIcon} />
               <Text style={styles.cardText}>MONITORAMENTO</Text>
             </TouchableOpacity>

@@ -39,24 +39,23 @@ export default function EmergenciaScreen() {
       <View style={styles.overlay} />
       <StatusBarSim />
 
-      {/* Linha superior: botão voltar + título */}
-      <View style={styles.headerRow}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <BlurView intensity={40} tint="light" style={styles.backBlur}>
-            <Image source={require('../../assets/voltar.png')} style={styles.backIcon} />
-          </BlurView>
-        </TouchableOpacity>
-        <Text style={styles.title}>EMERGÊNCIA</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        {/* Botão Voltar e Título na mesma linha */}
+        <View style={styles.headerRow}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            <BlurView intensity={40} tint="light" style={styles.backBlur}>
+              <Image source={require('../../assets/voltar.png')} style={styles.backIcon} />
+            </BlurView>
+          </TouchableOpacity>
+          <Text style={styles.title}>EMERGÊNCIA</Text>
+        </View>
 
-      {/* Grid de botões */}
-      <ScrollView contentContainerStyle={styles.buttonsContainer} showsVerticalScrollIndicator={false}>
+        {/* Grid de botões */}
         <View style={styles.grid}>
           <GlassButton icon={require('../../assets/alerta.png')} label="Alerta" onPress={() => setModalVisible('alerta')} />
           <GlassButton icon={require('../../assets/mapa.png')} label="Localização" onPress={() => setModalVisible('mapa')} />
           <GlassButton icon={require('../../assets/telefone.png')} label="Telefone" onPress={() => setModalVisible('telefone')} />
           <GlassButton icon={require('../../assets/familia.png')} label="Contatos" onPress={() => setModalVisible('grupo')} />
-          {/* Botão centralizado na segunda linha */}
           <View style={styles.centeredButton}>
             <GlassButton icon={require('../../assets/ambulacia.png')} label="Ambulância" onPress={() => setModalVisible('ambulancia')} />
           </View>
@@ -102,17 +101,20 @@ const styles = StyleSheet.create({
   bg: { flex: 1, width: '100%', height: '100%' },
   overlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.15)' },
 
-  // Linha do topo
+  scrollContainer: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 30,
+  },
+
+  // Linha do topo: botão voltar + título
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 60 : 40,
+    marginTop: Platform.OS === 'ios' ? 60 : 40,
     marginBottom: 20,
   },
-  backButton: {
-    marginRight: 15,
-  },
+  backButton: { marginRight: 90 },
   backBlur: {
     width: 35,
     height: 35,
@@ -123,18 +125,14 @@ const styles = StyleSheet.create({
   },
   backIcon: { width: 18, height: 18, tintColor: '#000' },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
     color: '#000',
-    flex: 1,
     textAlign: 'left',
+    flex: 1,
   },
 
-  buttonsContainer: {
-    paddingHorizontal: 15,
-    paddingBottom: 20,
-    alignItems: 'center',
-  },
+  // Grid de botões
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -166,6 +164,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // Modal
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',

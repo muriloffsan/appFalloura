@@ -7,6 +7,7 @@ import TabNavigator from './src/navigation/TabNavigator';
 import DadosAtuais from './src/screens/dadosAtuais.js'; 
 import DadosFixos from './src/screens/DadosFixos.js'; 
 import Emergencia from './src/screens/Emergencia.js';
+import Monitoramento from './src/screens/Monitoramento.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ export default function App() {
           <Stack.Screen name="DadosAtuais" component={DadosAtuais} /> 
           <Stack.Screen name="DadosFixos" component={DadosFixos} />
           <Stack.Screen name="Emergencia" component={Emergencia} />
+          <Stack.Screen name="Monitoramento" component={Monitoramento} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
