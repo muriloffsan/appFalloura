@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import DadosAtuaisScreen from '../screens/dadosAtuais.js';
 import DadosFixosScreen from '../screens/DadosFixos.js';
 import LocalRealScreen from '../screens/LocalReal.js';
+import ConfiguracoesScreen from '../screens/Configuracoes.js';
 
 import HomeStack from './HomeStack';
 
@@ -86,7 +87,7 @@ export default function TabNavigator() {
       {/* ⚙️ Configurações */}
       <Tab.Screen
         name="Configuracoes"
-        component={PlaceholderScreen}
+        component={ConfiguracoesScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons

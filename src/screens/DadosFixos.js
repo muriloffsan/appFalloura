@@ -38,7 +38,7 @@ export default function MonitoramentoScreen() {
           </BlurView>
         </TouchableOpacity>
 
-        <Text style={styles.title}>MONITORAMENTO</Text>
+        <Text style={styles.title}>INFORMAÇÕES DE PAULO CESAR</Text>
 
         {/* Card 1 - Dados Principais */}
         <GlassmorphicCard style={styles.infoCard}>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
   // --- Título ---
   title: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '700',
     color: '#000',
     marginBottom: 20,
